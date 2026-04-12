@@ -15,9 +15,17 @@ pipeline {
             }
         }
 
+        stage('Check Docker') {
+            steps {
+                sh 'which docker'
+                sh 'docker --version'
+                sh 'docker ps'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
-                sh 'docker build --no-cache -t myimage .'
+                sh 'docker build -t myimage .'
             }
         }
 
